@@ -38,14 +38,12 @@ ESPERANDO_QUE_SELECCIONE_VOLVER = 2
 Lista_de_Productos = [
     (0,0,'Bombones a Domicilio',"Los Mejores Bombones del mundo, Corre que te los pierdes!"),
     (1,1,'Pipas de Madera',"Las mejores pipas de cuba, Partete el rostro con glamour!"),  
-    (2,0,'Tacos',"""
-    ‼️ ATENCIÓN A TODOS LOS SUSCRIPTORES DE NUESTRO CANAL Y DE LA COMUNIDAD S3‼️
-    Está circulando una APK que dice ahorrar datos, tanto 4G, como 3G, por favor, no hay ninguna app que haga eso, esta app lo que hace es permitirle a sus creadores tener acceso completo a sus dispositivos, la aplicación apenas pesa 10kb y se llama (aunque esto puede cambiar) script 4G cu si la ven, no la instalen, podrían perder hasta el saldo que tienen en el móvil, sus cuentas podrían ser hackeadas, nadie sabe que magnitud y alcance puede llegar a tener el simple hecho de instalar esta APK, tengan mucho cuidado con lo que instalan en sus dispositivos.
-    Que el Señor les bendiga hoy y les regalé un exelente día...
-    """),
+    (2,0,'Tacos',"Un bocado y para mexico de cabeza! "),
     (3,1,'Jarrones de Ceramica',"Pa que adornes el gaito!"),
     (4,2,'Collares para Mascotas',"Para que los tengas controlados y no se escapenjjj!"),
     (5,2,'Cereal para perros',"Alimenta a tu perrito como dios manda!"),
+    (6,3,'Telefonos Celulares',"Los mejores al mejor precio!"),
+    (7,3,'Laptops a domicilio',"Pa que juegues dota con calidad xd!"),
     ]
 
 
@@ -53,6 +51,7 @@ Categorias_Productos = [
     (0,'Comida🍏🍖🌮'),
     (1,'Artesania🔨🔧'),
     (2,'Mascotas🐶🐱'),
+    (3,'Tecnologia📱💻'),
 ]
 
 
