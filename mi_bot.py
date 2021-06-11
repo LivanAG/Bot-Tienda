@@ -4,7 +4,8 @@ from telegram.ext import (
     MessageHandler,
     ConversationHandler,
     CallbackQueryHandler, 
-    Filters)
+    Filters,
+    PicklePersistence)
 
 from telegram import( 
 PhotoSize,
@@ -16,6 +17,8 @@ InlineKeyboardButton,
 InputMedia,
 InputMediaPhoto
 )
+
+import os
 
 #VARIABLES QUE VOY A UTILIZAR
 TOKEN_BOT = "1789009907:AAHq9GBmVkfBqkcGFbevw8iLuiB3SLMed_k"
@@ -61,7 +64,36 @@ lista_estados_del_handler_categorias=[]
 lista_estados_del_handler_productos =[]
 
 
+def Enviar_Imagenes(update,context,id) -> bool:
+    
 
+    directorio_general = 'imgs/'
+    directorio_objetivo=''
+    imagenes=[]
+
+    with os.scandir(directorio_general) as ficheros:
+              
+        for i in ficheros:                  
+            if(i.is_dir() and i.name == str(id)):                 
+                directorio_objetivo=directorio_general+i.name
+
+     
+    if directorio_objetivo!= '':
+        imagenes=os.listdir(directorio_objetivo)
+
+        
+        update.callback_query.message.chat.send_action(action=ChatAction.UPLOAD_PHOTO,timeout=None)
+        for i in imagenes:
+            foto = open(directorio_objetivo+'/'+i,'rb')
+            bot.send_photo(
+            chat_id=update.callback_query.message.chat.id,
+            photo=foto    
+        )
+        return True
+    else:
+        return False
+                
+    
 def start(update,context)-> int:
 
 
@@ -181,25 +213,9 @@ def Detallar_Producto_Seleccionado(update,context)-> int:
         text=producto[2],  
     )
     
-    foto1 = open('3.jpg','rb')
-    foto2 = open('4.jpg','rb')
-    foto3 = open('5.jpg','rb')
-
-    update.callback_query.message.chat.send_action(action=ChatAction.UPLOAD_PHOTO,timeout=None)
-
-    bot.send_photo(
-        chat_id=update.callback_query.message.chat.id,
-        photo=foto1     
-    )
-    bot.send_photo(
-        chat_id=update.callback_query.message.chat.id,
-        photo=foto2    
-    )
-    bot.send_photo(
-        chat_id=update.callback_query.message.chat.id,
-        photo=foto3    
-    )
-
+    
+    
+    Enviar_Imagenes(update,context,id_producto)
 
     bot.send_message(
         chat_id=update.callback_query.message.chat.id,
@@ -251,9 +267,9 @@ for i in Lista_de_Productos:
 
 def main() -> None:
 
+    persistence = PicklePersistence(filename='tienda_bot')
 
-
-    updater = Updater(TOKEN_BOT)
+    updater = Updater(TOKEN_BOT,persistence=persistence)
     dispatcher = updater.dispatcher
     
 
